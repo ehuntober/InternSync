@@ -71,7 +71,29 @@ exports.delete = (req, res) => {
     });
 };
 
-exports.applyForInternship = 
+// Apply for an internship
+exports.applyForInternship = async (req, res) => {
+  try {
+    const { studentId, internshipId } = req.body;
+
+    // Check if the student and internship exist
+    const student = await Student.findById(studentId);
+    const internship = await Internship.findById(internshipId);
+
+    if (!student || !internship) {
+      return res.status(404).json({ error: 'Student or internship not found' });
+    }
+
+    // Assign the internship to the student
+    student.internship = internshipId;
+    await student.save();
+
+    res.status(200).json({ message: 'Internship application successful' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while processing the internship application' });
+  }
+};
 
 
 
