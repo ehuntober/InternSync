@@ -11,6 +11,10 @@ const studentSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  bio:{
+    type: String,
+    required: true,
+  },
   skills: {
     type: [String],
     required: true

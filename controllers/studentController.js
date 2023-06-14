@@ -70,3 +70,8 @@ exports.delete = (req, res) => {
       res.status(500).json({ error: 'An error occurred' });
     });
 };
+
+exports.applyForInternship = 
+
+
+

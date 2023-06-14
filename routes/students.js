@@ -10,4 +10,10 @@ router.post('/', studentController.create);
 router.put('/:id', studentController.update);
 router.delete('/:id', studentController.delete);
 
+
+
+// POST route for student internship application
+router.post('/apply', studentController.applyForInternship);
+
+
 module.exports = router;

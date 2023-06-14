@@ -1,7 +1,7 @@
-// models/studentSignup.js
+
 const mongoose = require('mongoose');
 
-const studentSignupSchema = new mongoose.Schema({
+const organizationSignupSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -15,9 +15,9 @@ const studentSignupSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  
+
 });
 
-const StudentSignup = mongoose.model('StudentSignup', studentSignupSchema);
+const OrganizationSignup = mongoose.model('OrganizationSignup', organizationSignupSchema);
 
-module.exports = StudentSignup;
+module.exports = OrganizationSignup;

@@ -1,8 +1,8 @@
 const express  = require('express');
 const mongoose = require('mongoose')
 const internshipRoutes = require('./routes/internships')
-// const studentRoutes = require('./routes/student');
-// const mentorRoutes = require('./routes/mentor');
+const studentRoutes = require('./routes/students');
+
 // const matchRoutes = require('./routes/matching');
 
 
@@ -30,9 +30,9 @@ mongoose.connect('mongodb://localhost/internship-app',{
 
 
   app.use('/internships',internshipRoutes);
-//   app.use('/students',studentRoutes);
+  app.use('/students',studentRoutes);
 //   app.use('/matching',matchRoutes);
-//   app.use('/mentors',mentorRoutes);
+
 
   app.get('/', (req, res) => {
     res.send('Welcome to the InterSync: Your best internship App');
