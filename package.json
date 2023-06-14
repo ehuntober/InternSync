@@ -1,0 +1,12 @@
+{
+  "name": "internsync",
+  "version": "1.0.0",
+  "description": "is an online platform that connects students seeking practical experience with professionals and organizations offering unpaid internships. The platform aims to create a mutually beneficial exchange by facilitating skill sharing between interns and mentors.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
