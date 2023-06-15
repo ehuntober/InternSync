@@ -4,6 +4,7 @@ const authController = require('../controllers/authController');
 
 
 // POST route for student login
-routers.post('/login', authController.login)
+router.post('/login', authController.login)
 
 module.exports = router;
+

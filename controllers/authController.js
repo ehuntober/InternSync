@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const Student = require('.../models/student')
+const Student = require('../models/student')
 
 //student login
 

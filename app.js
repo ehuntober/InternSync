@@ -2,6 +2,8 @@ const express  = require('express');
 const mongoose = require('mongoose')
 const internshipRoutes = require('./routes/internships')
 const studentRoutes = require('./routes/students');
+const studentAuthRoutes = require('./routes/studentRoutes')
+const studentLoginRoutes = require('./routes/authRoutes')
 
 // const matchRoutes = require('./routes/matching');
 
@@ -31,6 +33,8 @@ mongoose.connect('mongodb://localhost/internship-app',{
 
   app.use('/internships',internshipRoutes);
   app.use('/students',studentRoutes);
+  app.use('/student', studentAuthRoutes);
+  app.use('/studentx',studentLoginRoutes);
 //   app.use('/matching',matchRoutes);
 
 

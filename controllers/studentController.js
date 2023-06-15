@@ -100,32 +100,37 @@ exports.applyForInternship = async (req, res) => {
 // displaying student signup form
 
 exports.showSignupForm = (req,res) =>{
+
+  res.send('hello world')
   /// render the student signup form view
 }
 
 // student signup
 
-exports.signup = async (req,res) =>{
-  try{
-    const {name, email, password} = req.body;
+exports.signup = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
 
-    const existingStudent = await Student.findOne({email});
-    if (existingStudent){
-      return res.status(400).json({error: 'Student already exists'})
+    // Check if student already exists
+    const existingStudent = await Student.findOne({ email });
+    if (existingStudent) {
+      return res.status(400).json({ error: 'Student already exists' });
     }
-    // Hashing the password
 
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new student
-    const student = new Student({name,email,password: hashedPassword});
+    const student = new Student({ name, email, password: hashedPassword });
     await student.save();
 
-    res.status(201).json({message: 'Student signup successful'})
-  } catch (error){
-    res.status(500).json({error: 'An error occured while processing the signup'})
+    res.status(201).json({ message: 'Student signup successful' });
+  } catch (error) {
+    console.error(error);
+    console.log(error.message);
+    res.status(500).json({ error: 'An error occurred while processing the student signup' });
   }
-}
+};
 
 
 
