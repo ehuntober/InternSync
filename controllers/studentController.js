@@ -1,4 +1,4 @@
-
+const bcrypt = require('bcrypt')
 const Student = require('../models/student');
 
 
@@ -94,6 +94,73 @@ exports.applyForInternship = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while processing the internship application' });
   }
 };
+
+
+
+// displaying student signup form
+
+exports.showSignupForm = (req,res) =>{
+  /// render the student signup form view
+}
+
+// student signup
+
+exports.signup = async (req,res) =>{
+  try{
+    const {name, email, password} = req.body;
+
+    const existingStudent = await Student.findOne({email});
+    if (existingStudent){
+      return res.status(400).json({error: 'Student already exists'})
+    }
+    // Hashing the password
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new student
+    const student = new Student({name,email,password: hashedPassword});
+    await student.save();
+
+    res.status(201).json({message: 'Student signup successful'})
+  } catch (error){
+    res.status(500).json({error: 'An error occured while processing the signup'})
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
