@@ -34,7 +34,7 @@ mongoose.connect('mongodb://localhost/internship-app',{
   app.use('/internships',internshipRoutes);
   app.use('/students',studentRoutes);
   app.use('/student', studentAuthRoutes);
-  app.use('/studentx',studentLoginRoutes);
+  app.use('/student',studentLoginRoutes);
 //   app.use('/matching',matchRoutes);
 
 
