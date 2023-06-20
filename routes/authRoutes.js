@@ -7,4 +7,6 @@ const authController = require('../controllers/authController');
 router.post('/login', authController.login)
 
 module.exports = router;
+// FEqkwxrzYwfoTVMM
+// mongodb+srv://ehuntober:FEqkwxrzYwfoTVMM@cluster0.9slogog.mongodb.net/
 

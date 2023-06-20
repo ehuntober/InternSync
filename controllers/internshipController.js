@@ -14,7 +14,7 @@ exports.getAll = (req, res) => {
 
 exports.create = (req,res) =>{
     const internshipData = req.body;
-    Intership.create(internshipData)
+    Internship.create(internshipData)
 
     .then(internship =>{
         res.status(201).json(internship);

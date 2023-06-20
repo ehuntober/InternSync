@@ -34,6 +34,7 @@ const internshipSchema = new mongoose.Schema({
     }
 })
 
+
 const Internship = mongoose.model('Internship', internshipSchema);
 
 module.exports = Internship;

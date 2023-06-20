@@ -12,10 +12,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-
 app.use(express.json())
 
 mongoose.connect('mongodb://localhost/internship-app',{
+  // mongoose.connect('mongodb+srv://ehuntober:FEqkwxrzYwfoTVMM@cluster0.9slogog.mongodb.net/',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -29,6 +29,7 @@ mongoose.connect('mongodb://localhost/internship-app',{
 
   });
 
+ 
 
 
   app.use('/internships',internshipRoutes);
