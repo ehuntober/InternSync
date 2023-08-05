@@ -75,7 +75,7 @@ const internLogin = async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password.' });
     }
 
-    const token = jwt.sign({ user: intern }, 'your_secret_key', { expiresIn: '1h' });
+    const token = jwt.sign({ user: intern },  process.env.JWT_SECRET,, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
     console.error('Error logging in as intern:', error);
