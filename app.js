@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Import required modules
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,7 +10,7 @@ const authRoutes = require('./src/routes/authRoutes');
 // const organizationRoutes = require('./src/routes/organizationRoutes');
 // const internshipPostRoutes = require('./src/routes/internshipPostRoutes');
 // const applicationRoutes = require('./src/routes/applicationRoutes');
-// const adminRoutes = require('./routes/adminRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Create Express app
 const app = express();
@@ -35,7 +36,7 @@ app.use('/api/auth', authRoutes);
 // app.use('/api/organizations', organizationRoutes);
 // app.use('/api/internship-posts', internshipPostRoutes);
 // app.use('/api/applications', applicationRoutes);
-// app.use('/api/admin', adminRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Intern = require('../models/intern');
@@ -75,7 +77,7 @@ const internLogin = async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password.' });
     }
 
-    const token = jwt.sign({ user: intern },  process.env.JWT_SECRET,, { expiresIn: '1h' });
+    const token = jwt.sign({ user: intern },  process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
     console.error('Error logging in as intern:', error);
@@ -96,7 +98,7 @@ const organizationLogin = async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password.' });
     }
 
-    const token = jwt.sign({ user: organization }, 'your_secret_key', { expiresIn: '1h' });
+    const token = jwt.sign({ user: organization }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
     console.error('Error logging in as organization:', error);
