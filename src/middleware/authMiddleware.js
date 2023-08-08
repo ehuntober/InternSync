@@ -1,5 +1,9 @@
+require('dotenv').config();
+
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
+const Intern = require('../models/intern');
+const Organization = require('../models/organization');
 
 const authMiddleware = async (req, res, next) => {
   const token = req.header('Authorization');
@@ -9,15 +13,32 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
-    const decodedToken = jwt.verify(token, 'your_secret_key');
-    const admin = await Admin.findById(decodedToken.user._id);
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (!admin) {
+    if (decodedToken.userType === 'admin') {
+      const admin = await Admin.findById(decodedToken.user._id);
+      if (!admin) {
+        return res.status(401).json({ message: 'Access denied. Invalid token.' });
+      }
+      req.user = admin; // Set the authenticated user (admin) object to the request for further use
+      next();
+    } else if (decodedToken.userType === 'intern') {
+      const intern = await Intern.findById(decodedToken.user._id);
+      if (!intern) {
+        return res.status(401).json({ message: 'Access denied. Invalid token.' });
+      }
+      req.user = intern; // Set the authenticated user (intern) object to the request for further use
+      next();
+    } else if (decodedToken.userType === 'organization') {
+      const organization = await Organization.findById(decodedToken.user._id);
+      if (!organization) {
+        return res.status(401).json({ message: 'Access denied. Invalid token.' });
+      }
+      req.user = organization; // Set the authenticated user (organization) object to the request for further use
+      next();
+    } else {
       return res.status(401).json({ message: 'Access denied. Invalid token.' });
     }
-
-    req.admin = admin; // Set the authenticated admin object to the request for further use
-    next();
   } catch (error) {
     console.error('Error verifying token:', error);
     res.status(500).json({ message: 'Failed to authenticate.' });

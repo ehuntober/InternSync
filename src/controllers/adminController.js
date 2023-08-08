@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
@@ -40,7 +43,7 @@ const adminLogin = async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password.' });
     }
 
-    const token = jwt.sign({ user: admin }, 'your_secret_key', { expiresIn: '1h' });
+    const token = jwt.sign({ user: admin }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
     console.error('Error logging in as admin:', error);
