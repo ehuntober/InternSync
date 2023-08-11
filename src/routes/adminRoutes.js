@@ -3,12 +3,15 @@ const router = express.Router();
 const adminController = require('../controllers/adminController');
 const authMiddleware = require('../middleware/authMiddleware');
 
+const adminAuthMiddleware = require('../middleware/adminAuthMiddleware');
+
+
 router.post('/register', adminController.adminRegister);
 router.post('/login', adminController.adminLogin);
 
 // Admin-specific routes for deleting interns, organizations, and organization posts
-router.delete('/interns/:id', authMiddleware, adminController.deleteIntern);
-router.delete('/organizations/:id', authMiddleware, adminController.deleteOrganization);
-router.delete('/posts/:id', authMiddleware, adminController.deleteInternshipPost);
+router.delete('/interns/:id', adminAuthMiddleware, adminController.deleteIntern);
+router.delete('/organizations/:id', adminAuthMiddleware, adminController.deleteOrganization);
+router.delete('/posts/:id', adminAuthMiddleware, adminController.deleteInternshipPost);
 
 module.exports = router;
